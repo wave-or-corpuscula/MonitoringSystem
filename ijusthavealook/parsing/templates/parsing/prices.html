@@ -1,16 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'parsing/css/styles.css' %}"/>
 </head>
 <body>
-    <label for="observed_list">Choose a observed company:</label>
-    <br>
-    <select name="observed_list" id="1">
-        {% for obs in observed %}<option value="{{obs.name}}">{{obs.name}}
-        </option>{% endfor %}
+
+    <fieldset>
+        <legend>Choose a observed company:</legend>
+        {% for obs in observed %}
+        <br>
+        <div>
+            <input type="checkbox" id="{{obs.name}}" name="{{obs.name}}"/>
+            <label for="{{obs.name}}">{{obs.name}}</label>
+        </div>
+        {% endfor %}
     </select>
+    </fieldset>
 </body>
 </html>

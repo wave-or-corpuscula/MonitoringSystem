@@ -1,0 +1,11 @@
+fieldset {
+    display: inline-block;
+    background: cornflowerblue;
+    border: 5px solid blue;
+  }
+
+  legend {
+    padding: 10px;
+    background: blueviolet;
+    color: cyan;
+  }
