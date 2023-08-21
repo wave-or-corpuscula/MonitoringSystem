@@ -1,0 +1,1 @@
+# Web application which will help to monitor and compare provided prices
