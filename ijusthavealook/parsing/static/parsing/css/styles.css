@@ -20,6 +20,8 @@ legend {
   border: 1px solid crimson;
   padding: 10px;
   margin: 10px;
+
+  height: 300px;
 }
 
 .selected-ids-block {
