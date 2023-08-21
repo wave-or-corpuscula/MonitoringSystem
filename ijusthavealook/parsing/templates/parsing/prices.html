@@ -44,19 +44,23 @@
 
 <body>
 
-    <fieldset>
-        <legend>Choose a observed company:</legend>
-        {% for obs in observed %}
-        <br>
-        <div>
-            <input type="checkbox" id="{{obs.pk}}" name="{{obs.name}}" class="observed-checkbox"/>
-            <label for="{{obs.name}}">{{obs.name}}</label>
+    <div class="observed-list">
+        <fieldset>
+            <legend>Choose a observed company:</legend>
+            {% for obs in observed %}
+            <br>
+            <div>
+                <input type="checkbox" id="{{obs.pk}}" name="{{obs.name}}" class="observed-checkbox"/>
+                <label for="{{obs.name}}">{{obs.name}}</label>
         </div>
         {% endfor %}
-    </fieldset>
+        </fieldset>
+    </div>
 
-    <div id="selected-ids-block">
+    <div id="selected-ids-block" class="selected-ids-block">
         <!-- Здесь будут отображаться выбранные ID -->
     </div>
+
 </body>
+
 </html>

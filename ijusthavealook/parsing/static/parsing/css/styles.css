@@ -1,18 +1,27 @@
 fieldset {
-    display: inline-block;
-    background: cornflowerblue;
-    border: 5px solid blue;
+  background: cornflowerblue;
+  border: 5px solid blue;
   }
 
-  legend {
-    padding: 10px;
-    background: blueviolet;
-    color: cyan;
-  }
+legend {
+  padding: 10px;
+  background: #8a2be2;
+  color: cyan;
+}
+
+.observed-list {
+  display: inline-block;
+  vertical-align: top;
+}
 
 .selected-id-block {
-    background-color: blue;
-    border: 1px solid crimson;
-    padding: 10px;
-    margin-top: 10px;
+  display: inline-block;
+  background-color: blue;
+  border: 1px solid crimson;
+  padding: 10px;
+  margin: 10px;
+}
+
+.selected-ids-block {
+  display: inline-block;
 }
