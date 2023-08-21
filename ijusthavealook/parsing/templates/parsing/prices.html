@@ -7,6 +7,41 @@
     <title>{{ title }}</title>
     <link type="text/css" rel="stylesheet" href="{% static 'parsing/css/styles.css' %}"/>
 </head>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const checkboxes = document.querySelectorAll('.observed-checkbox');
+        const selectedIdsBlock = document.getElementById('selected-ids-block');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                const checkboxId = checkbox.id;
+                if (checkbox.checked) {
+                    createNewIdBlock(checkboxId);
+                } else {
+                    removeIdBlock(checkboxId);
+                }
+            });
+        });
+
+        function createNewIdBlock(id) {
+            const newElement = document.createElement('div');
+            newElement.className = 'selected-id-block';
+            newElement.setAttribute('data-id', id);
+            newElement.textContent = `Выбран ID: ${id}`;
+            selectedIdsBlock.appendChild(newElement);
+        }
+
+        function removeIdBlock(id) {
+            const elementToRemove = selectedIdsBlock.querySelector(`.selected-id-block[data-id="${id}"]`);
+            if (elementToRemove) {
+                selectedIdsBlock.removeChild(elementToRemove);
+            }
+        }
+    });
+</script>
+
+
 <body>
 
     <fieldset>
@@ -14,11 +49,14 @@
         {% for obs in observed %}
         <br>
         <div>
-            <input type="checkbox" id="{{obs.name}}" name="{{obs.name}}"/>
+            <input type="checkbox" id="{{obs.pk}}" name="{{obs.name}}" class="observed-checkbox"/>
             <label for="{{obs.name}}">{{obs.name}}</label>
         </div>
         {% endfor %}
-    </select>
     </fieldset>
+
+    <div id="selected-ids-block">
+        <!-- Здесь будут отображаться выбранные ID -->
+    </div>
 </body>
 </html>

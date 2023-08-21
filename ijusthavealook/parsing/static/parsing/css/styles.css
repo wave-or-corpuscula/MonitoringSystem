@@ -9,3 +9,10 @@ fieldset {
     background: blueviolet;
     color: cyan;
   }
+
+.selected-id-block {
+    background-color: blue;
+    border: 1px solid crimson;
+    padding: 10px;
+    margin-top: 10px;
+}
