@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <label for="observed_list">Choose a observed company:</label>
+    <br>
+    <select name="observed_list" id="1">
+        {% for obs in observed %}<option value="{{obs.name}}">{{obs.name}}
+        </option>{% endfor %}
+    </select>
+</body>
+</html>
