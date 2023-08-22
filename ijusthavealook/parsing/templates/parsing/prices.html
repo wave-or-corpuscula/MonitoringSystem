@@ -9,8 +9,6 @@
     <title>{{ title }}</title>
     <link type="text/css" rel="stylesheet" href="{% static 'parsing/css/styles.css' %}"/>
     <script src="{% static 'parsing/js/checkboxes_checking.js' %}"></script>
-    <script src="{% static 'parsing/js/clear_checkboxes.js' %}"></script>
-    <script src="{% static 'parsing/js/check_all_checkboxes.js' %}"></script>
 </head>
 
 <body>
@@ -29,16 +27,26 @@
         </fieldset>
     </div>
 
-    <div id="selected-ids-block" class="selected-ids-block">
-        <!-- Здесь будут отображаться выбранные ID -->
-    </div>
-
+    
     <div class="button-container">
         <button id="clear-checkboxes">Uncheck all</button>
     </div>
 
     <div class="button-container">
         <button id="check-all-checkboxes">Check all</button>
+    </div>
+
+    <div class="goods-container">
+        {% getgoods as goods %}
+        <select name="goods" id="goods">
+            {% for good in goods %}
+            <option value="{{good.name}}" id="{{good.pk}}">{{good.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div id="selected-ids-block" class="selected-ids-block">
+        <!-- Здесь будут отображаться выбранные ID -->
     </div>
 
 </body>
