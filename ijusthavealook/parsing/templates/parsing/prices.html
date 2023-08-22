@@ -8,8 +8,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link type="text/css" rel="stylesheet" href="{% static 'parsing/css/styles.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'parsing/css/dropdown.css' %}"/>
     <script src="{% static 'parsing/js/checkboxes_checking.js' %}"></script>
 </head>
+
+<script>
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+      
+    function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    } 
+
+</script>
 
 <body>
 
@@ -27,6 +52,9 @@
         </fieldset>
     </div>
 
+    <div id="selected-ids-block" class="selected-ids-block">
+        <!-- Здесь будут отображаться выбранные ID -->
+    </div>
     
     <div class="button-container">
         <button id="clear-checkboxes">Uncheck all</button>
@@ -36,18 +64,31 @@
         <button id="check-all-checkboxes">Check all</button>
     </div>
 
-    <div class="goods-container">
-        {% getgoods as goods %}
-        <select name="goods" id="goods">
-            {% for good in goods %}
-            <option value="{{good.name}}" id="{{good.pk}}">{{good.name}}</option>
-            {% endfor %}
-        </select>
+    <!-- <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+            <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">
+            {% getgoods as goods %}
+            <select name="goods" id="goods">
+                {% for good in goods %}
+                <option value="{{good.name}}" id="{{good.pk}}">{{good.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div> -->
+
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+            <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">
+            {% getgoods as goods %}
+                {% for good in goods %}
+                <a href="#{{good.name}}" id="{{good.pk}}">{{good.name}}</a>
+                {% endfor %}
+            </select>
+        </div>
     </div>
 
-    <div id="selected-ids-block" class="selected-ids-block">
-        <!-- Здесь будут отображаться выбранные ID -->
-    </div>
 
 </body>
 
