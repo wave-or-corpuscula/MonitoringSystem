@@ -28,12 +28,12 @@ legend {
   display: inline-block;
 }
 
-.button-container {
-  text-align: center;
+/* .button-container {
+  text-align: left;
   margin-top: 10px; 
 }
 
 .button-container button {
   display: inline-block;
   margin-right: 10px;
-}
+} */
