@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,41 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link type="text/css" rel="stylesheet" href="{% static 'parsing/css/styles.css' %}"/>
+    <script src="{% static 'parsing/js/checkboxes_checking.js' %}"></script>
+    <script src="{% static 'parsing/js/clear_checkboxes.js' %}"></script>
+    <script src="{% static 'parsing/js/check_all_checkboxes.js' %}"></script>
 </head>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const checkboxes = document.querySelectorAll('.observed-checkbox');
-        const selectedIdsBlock = document.getElementById('selected-ids-block');
-
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                const checkboxId = checkbox.id;
-                if (checkbox.checked) {
-                    createNewIdBlock(checkboxId);
-                } else {
-                    removeIdBlock(checkboxId);
-                }
-            });
-        });
-
-        function createNewIdBlock(id) {
-            const newElement = document.createElement('div');
-            newElement.className = 'selected-id-block';
-            newElement.setAttribute('data-id', id);
-            newElement.textContent = `Выбран ID: ${id}`;
-            selectedIdsBlock.appendChild(newElement);
-        }
-
-        function removeIdBlock(id) {
-            const elementToRemove = selectedIdsBlock.querySelector(`.selected-id-block[data-id="${id}"]`);
-            if (elementToRemove) {
-                selectedIdsBlock.removeChild(elementToRemove);
-            }
-        }
-    });
-</script>
-
 
 <body>
 
@@ -59,6 +29,14 @@
 
     <div id="selected-ids-block" class="selected-ids-block">
         <!-- Здесь будут отображаться выбранные ID -->
+    </div>
+
+    <div class="button-container">
+        <button id="clear-checkboxes">Uncheck all</button>
+    </div>
+
+    <div class="button-container">
+        <button id="check-all-checkboxes">Check all</button>
     </div>
 
 </body>
