@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('check-all-checkboxes').addEventListener('click', function () {
         checkboxes.forEach(checkbox => {
-            checkbox.checked = true;
-            const checkboxText = checkbox.getAttribute('name');
-            createNewIdBlock(checkbox.id, checkboxText);
+            if (!checkbox.checked) {
+                checkbox.checked = true;
+                const checkboxText = checkbox.getAttribute('name');
+                createNewIdBlock(checkbox.id, checkboxText);
+            }
         });
     });
 

@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('clear-checkboxes').addEventListener('click', function () {
         checkboxes.forEach(checkbox => {
-            checkbox.checked = false;
-            removeIdBlock(checkbox.id);
+            if (checkbox.checked) {
+                checkbox.checked = false;
+                removeIdBlock(checkbox.id);
+            }
         });
     });
 
