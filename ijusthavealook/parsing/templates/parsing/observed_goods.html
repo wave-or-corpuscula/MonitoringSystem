@@ -3,22 +3,8 @@
 
 
 {% block content %}
-
-<h1>
-    {% if observed %}
-    Товары магазина {{observed}}
-    {% else %}
-    Все товары
-    {% endif %}
-
-</h1>
-
+{% getgoods as goods %}
     <ul>
-        {% if goods.count == 0 %}
-        <h3>
-            Товары отсутствуют
-        {% else %}
-        </h3>
         {% for good in goods %}
         <li>
             <div>
@@ -26,6 +12,5 @@
             </div>
         </li>
         {% endfor %}
-        {% endif %}
     </ul>
 {% endblock %}
