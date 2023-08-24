@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>
-        Here will be the main page of the project
-    </h1>
-</body>
-</html>
+{% extends 'parsing/base.html' %}
+{% load parsing_tags %}
+
+{% block content %}
+<ul class="list-articles">
+
+	{% getgoods as goods %}
+	{% for g in goods %}
+			<li><div class="article-panel">
+	<p class="first">Категория: {{g.cat}}</p>
+	</div>
+				<h2>{{g.name}}</h2>
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ g.name }}">Читать пост</a></p>
+			</li>
+	{% endfor %}
+</ul>
+{% endblock %}

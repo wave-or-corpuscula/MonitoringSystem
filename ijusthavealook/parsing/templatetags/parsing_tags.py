@@ -11,4 +11,4 @@ def get_observed():
 
 @register.simple_tag(name='getgoods')
 def get_goods():
-    return Goods.objects.all()
+    return Goods.objects.all().select_related()

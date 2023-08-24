@@ -1,7 +1,6 @@
 from django.db import models
 
-from parsing.models.goods import Goods
-from parsing.models.observed import Observed
+from . import Goods, Observed
 
 
 class Links(models.Model):

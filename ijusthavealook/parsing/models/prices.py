@@ -1,8 +1,6 @@
 from django.db import models
-from datetime import datetime
 
-from parsing.models.goods import Goods
-from parsing.models.observed import Observed
+from . import Goods, Observed
 
 
 class Prices(models.Model):

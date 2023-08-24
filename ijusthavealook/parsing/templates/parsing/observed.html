@@ -1,0 +1,23 @@
+{% extends 'parsing/base.html' %}
+{% load parsing_tags %}
+
+{% block content %}
+
+<h1>
+    Список отслеживаемых магазинов
+</h1>
+<ul>
+    {% getobs as observed %}
+    {% for store in observed %}
+    <li>
+        <div>
+            <a href="#" id="{{store.pk}}">
+                {{store.name}}
+            </a>
+        </div>
+    </li>
+    {% endfor %}
+
+</ul>
+
+{% endblock%}

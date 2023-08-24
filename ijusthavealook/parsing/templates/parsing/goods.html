@@ -1,0 +1,16 @@
+{% extends 'parsing/base.html' %}
+{% load parsing_tags %}
+
+
+{% block content %}
+{% getgoods as goods %}
+    <ul>
+        {% for good in goods %}
+        <li>
+            <div>
+                <a href="#" id="{{good.pk}}">{{good.name}}</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
