@@ -14,5 +14,3 @@ urlpatterns = [
 
     path('get_goods_data/', get_goods_data)
 ]
-
-

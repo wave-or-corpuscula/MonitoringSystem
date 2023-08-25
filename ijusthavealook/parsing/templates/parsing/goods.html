@@ -5,9 +5,12 @@
 {% block content %}
 
 <h1>
-    {% if observed %}
+
+    {% if observed_id %}
+    {% getlastprices observed_id as goods %}
     Товары магазина {{observed}}
     {% else %}
+    {% getlastprices as goods %}
     Все товары
     {% endif %}
 
@@ -19,10 +22,13 @@
             Товары отсутствуют
         {% else %}
         </h3>
-        {% for good in goods %}
-        <li>
+        {% for good in goods.goods %}
+        <li>    
             <div>
                 <a href="#" id="{{good.pk}}">{{good.name}}</a>
+                <p>
+                    Цена: {{good.price}}
+                </p>
             </div>
         </li>
         {% endfor %}

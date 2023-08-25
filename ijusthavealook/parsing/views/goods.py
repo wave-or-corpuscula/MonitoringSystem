@@ -10,12 +10,10 @@ class GoodsListView(TemplateView):
     template_name = 'parsing/goods.html'
 
     def get(self, request):
-        goods = Goods.objects.all()
 
         context = {
             'title': 'Goods list',
             'menu': menu,
-            'goods': goods
             }
 
         return render(request, self.template_name, context)
