@@ -8,7 +8,7 @@
 
     {% if observed_id %}
     {% getlastprices observed_id as goods %}
-    Товары магазина {{observed}}
+    Товары магазина {{goods.observed}}
     {% else %}
     {% getlastprices as goods %}
     Все товары
@@ -17,18 +17,20 @@
 </h1>
 
     <ul>
-        {% if goods.count == 0 %}
+        {% if goods.goods.count == 0 %}
         <h3>
-            Товары отсутствуют
+            Товары отсутствуют или не найдены
         {% else %}
         </h3>
         {% for good in goods.goods %}
         <li>    
             <div>
-                <a href="#" id="{{good.pk}}">{{good.name}}</a>
+                <a href="/goods/{{good.good_id}}" id="{{good.good_id}}">{{good.name}}</a>
+                {% if observed_id %}
                 <p>
                     Цена: {{good.price}}
                 </p>
+                {% endif %}
             </div>
         </li>
         {% endfor %}

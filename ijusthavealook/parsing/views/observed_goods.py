@@ -1,10 +1,7 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.db.models import OuterRef, Subquery, F
 from django.views.generic import TemplateView
 
 from .index import menu
-from parsing.models import Goods, Observed, Prices
 
 
 class ObservedGoodsView(TemplateView):

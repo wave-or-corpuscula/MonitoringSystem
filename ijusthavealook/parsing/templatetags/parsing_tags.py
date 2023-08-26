@@ -16,6 +16,10 @@ def get_observed():
 def get_goods():
     return Goods.objects.all()
 
+@register.simple_tag(name='getgoodbyid')
+def get_good_by_id(good_id: int):
+    return Goods.objects.get(pk=good_id)
+
 
 @register.simple_tag(name='getlastprices')
 def get_last_prices(observed_id: int = None):
@@ -27,15 +31,15 @@ def get_last_prices(observed_id: int = None):
             date=Subquery(subquery.values('date')[:1])
         )
         observed = Observed.objects.get(pk=observed_id)
+        queryset = latest_prices.annotate(
+            name=Subquery(Goods.objects.filter(pk=OuterRef('good_id')).values('name')[:1])
+        ).values('name', 'price', 'date', 'good_id')
     else:
-        subquery = Prices.objects.filter(good_id=OuterRef('good_id')).order_by('-date')
-        latest_prices = Prices.objects.filter(
-            date=Subquery(subquery.values('date')[:1])
-        )
-
-    queryset = latest_prices.annotate(
-        name=Subquery(Goods.objects.filter(pk=OuterRef('good_id')).values('name')[:1])
-    ).values('name', 'price', 'date')
+        queryset = Prices.objects. \
+            select_related(). \
+                values('good_id', 'good_id__name'). \
+                    annotate(name=F('good_id__name')). \
+                        distinct()
 
     return {'goods': queryset, 'observed': observed}
     

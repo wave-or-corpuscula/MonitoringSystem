@@ -1,0 +1,31 @@
+{% extends 'parsing/base.html' %}
+{% load parsing_tags %}
+
+
+{% block content %}
+{% getgoodbyid good_id=good_id as good %}
+<h2>
+    Цены на товар: {{good.name}}
+</h2>
+
+<div class="contains-stores">
+    {% for store in contains %}
+    <p class="store-name" id="{{store.observed_id}}">
+        Магазин: {{store.observed}}
+    </p>
+    <ul class="good-prices">
+        {% for price in store.prices %}
+        <li class="good-price-pair"> 
+            <p  class="good-price">
+                {{ price.price }}
+            </p>
+            <p class="price-date">
+                {{price.date}}
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+
+</div>
+{% endblock %}
