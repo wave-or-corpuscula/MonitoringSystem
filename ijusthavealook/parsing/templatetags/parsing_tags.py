@@ -20,7 +20,6 @@ def get_goods():
 def get_good_by_id(good_id: int):
     return Goods.objects.get(pk=good_id)
 
-
 @register.simple_tag(name='getlastprices')
 def get_last_prices(observed_id: int = None):
     observed = None

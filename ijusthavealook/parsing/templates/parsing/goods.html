@@ -25,7 +25,7 @@
         {% for good in goods.goods %}
         <li>    
             <div>
-                <a href="/goods/{{good.good_id}}" id="{{good.good_id}}">{{good.name}}</a>
+                <a href="{% url 'good_prices' good_id=good.good_id %}" id="{{good.good_id}}">{{good.name}}</a>
                 {% if observed_id %}
                 <p>
                     Цена: {{good.price}}

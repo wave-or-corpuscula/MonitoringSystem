@@ -11,7 +11,7 @@
     {% for store in observed %}
     <li>
         <div>
-            <a href="./{{store.pk}}" id="{{store.pk}}">
+            <a href="{% url 'observed_list' observed_id=store.pk %}" id="{{store.pk}}">
                 {{store.name}}
             </a>
         </div>

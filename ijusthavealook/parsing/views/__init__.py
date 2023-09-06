@@ -5,3 +5,4 @@ from parsing.views.prices import PricesView, get_goods_data
 from parsing.views.observed import ObservedListView
 from parsing.views.goods import GoodsListView
 from parsing.views.observed_goods import ObservedGoodsView
+from parsing.views.set_origin import SetOriginView, add_origin_to_good
