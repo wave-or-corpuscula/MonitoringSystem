@@ -1,3 +1,9 @@
+menu = [
+    {'title': 'О сайте', 'url_name': 'about'},
+    {'title': 'Магазины', 'url_name': 'observed'},
+    {'title': 'Товары', 'url_name': 'goods'},
+]
+
 from parsing.views.about import AboutView
 from parsing.views.good_prices import GoodPricesView
 from parsing.views.index import IndexView

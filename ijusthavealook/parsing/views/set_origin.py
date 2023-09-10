@@ -2,9 +2,9 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from .index import menu
+from . import menu
 
-from parsing.models import ConcurentGoods
+from parsing.models import ConcurentGoods, Goods
 
 
 class SetOriginView(TemplateView):
@@ -13,8 +13,6 @@ class SetOriginView(TemplateView):
     def get(self, request, good_id: int):
 
         void_goods = ConcurentGoods.objects.filter(origin_good_id__isnull=True).select_related()
-        # for good in void_goods:
-        #     print(good.name, good.company, good.origin_good_id)
         context = {
             'title': 'Добавить товар',
             'menu': menu,
@@ -26,12 +24,17 @@ class SetOriginView(TemplateView):
     
 
 def add_origin_to_good(request):
+    print(request)
     if request.method == 'GET':
         origin_id = request.GET.get('origin_id')
+        print(origin_id)
         correspond_good_ids = request.GET.get('correspond_good_ids')
 
         cor_good_ids = correspond_good_ids.split(',');
 
-        print(cor_good_ids)
+        cor_goods = ConcurentGoods.objects.filter(pk__in=cor_good_ids)
+        for good in cor_goods:
+            good.origin_good_id = Goods.objects.get(pk=origin_id)
+            good.save()
 
         return JsonResponse({'prices': 'prices_data'})

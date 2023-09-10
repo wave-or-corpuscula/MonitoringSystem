@@ -10,18 +10,13 @@
 
 <div class="contains-stores">
     {% for store in contains %}
-    <p class="store-name" id="{{store.observed_id}}">
-        Магазин: {{store.observed}}
+    <p class="store-name" id="{{store.observed.pk}}" >
+        Магазин: <a href="{% url 'observed_list' observed_id=store.observed.pk %}">{{store.observed.name}}</a>
     </p>
     <ul class="good-prices">
         {% for price in store.prices %}
         <li class="good-price-pair"> 
-            <p  class="good-price">
-                {{ price.price }}
-            </p>
-            <p class="price-date">
-                {{price.date}}
-            </p>
+            Дата: {{price.date}}, Цена: {{ price.price }}
         </li>
         {% endfor %}
     </ul>

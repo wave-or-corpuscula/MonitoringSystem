@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from .index import menu
+from . import menu
+
+from parsing.models import Goods
 
 
 class GoodsListView(TemplateView):
@@ -9,9 +11,11 @@ class GoodsListView(TemplateView):
 
     def get(self, request):
 
+        goods = Goods.objects.all()
         context = {
             'title': 'Goods list',
             'menu': menu,
+            'goods': goods
             }
 
         return render(request, self.template_name, context)

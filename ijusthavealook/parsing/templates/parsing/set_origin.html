@@ -3,27 +3,34 @@
 {% load static %}
 
 {% block content %}
-{% getgoodbyid good_id=good_id as current_good %}
 <script src="{% static 'parsing/js/add_origin_to_good.js' %}"></script>
+{% getgoodbyid good_id=good_id as current_good %}
 <h3>
     Добавить к товару: {{current_good.name}}
 </h3>
+<p>
+    Потом тут будет поиск по товарам
+</p>
 <div class="void-goods-list">
     <table>
         {% for good in void_goods %}
         <tr>
             <th>        
-                <input type="checkbox" id="void-goods-item" name="{{good.id}}" class="void-goods-item"/>
+                <input type="checkbox" id="void-goods-item" name="{{good.pk}}" class="void-goods-item"/>
             </th>
             <th>
                 {{good.name}}
             </th>
             <th>{{good.company}}</th>
-            <th>0</th>
+            {% if good.link %}
+            <th><a href="{{good.link}}">Ссылка</a></th>
+            {% else %}
+            <th><a href="#">Ссылка</a></th>
+            {% endif %}
         </tr>
         {% endfor %}
     </table> 
-    <button data-good-id="{{ good_id }}" id="add-to-good">Добавить</button>
+    <button data-good-id="{{good_id}}" id="add-to-good">Добавить</button>
 </div>
 
 {% endblock%}

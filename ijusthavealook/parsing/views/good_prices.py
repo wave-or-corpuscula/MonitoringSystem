@@ -2,10 +2,10 @@ from django.db.models import F
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from parsing.models import Goods, Prices, Observed
+from parsing.models import Goods, Prices, Observed, ConcurentGoods, ConcurentPrices
 
 
-from .index import menu
+from . import menu
 
 
 class GoodPricesView(TemplateView):
@@ -14,24 +14,18 @@ class GoodPricesView(TemplateView):
     def get(self, request, good_id: str):
 
         contains = []
-        contains_stores = Prices.objects. \
-            filter(good_id=good_id). \
-                select_related(). \
-                    values("observed_id"). \
-                        distinct(). \
-                            annotate(observed_name=F('observed_id__name'))
-        for store in contains_stores:
-            observed_id = store.get('observed_id')
-            prices = Prices.objects. \
-                filter(observed_id=observed_id, good_id=good_id). \
-                    values('price', 'date'). \
-                        order_by('-date')
-            contains.append({
-                'observed_id': observed_id, 
-                'observed': store.get('observed_name'), 
-                'prices': prices
-                })    
+        contains.append({
+            'observed': Observed.objects.get(pk=Goods.objects.get(pk=good_id).observed_id.pk),
+            'prices': Prices.objects.filter(good_id=good_id).order_by('-date')
+        })
 
+        related_goods = ConcurentGoods.objects.filter(origin_good_id=good_id)
+        for good in related_goods:
+          contains.append({
+            'observed': good.company,
+            'prices': ConcurentPrices.objects.filter(good_id=good.pk).order_by('-date')
+        })  
+        
         context = {
             'title': 'Цены товара',
             'menu': menu,

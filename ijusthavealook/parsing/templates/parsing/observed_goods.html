@@ -3,14 +3,29 @@
 
 
 {% block content %}
-{% getgoods as goods %}
-    <ul>
-        {% for good in goods %}
-        <li>
-            <div>
-                <a href="#" id="{{good.pk}}">{{good.name}}</a>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+<h1>
+    Товары магазина {{observed_name}}
+</h1>
+<ul>
+    {% if goods_prices|length == 0 %}
+    <h3>
+        Товары отсутствуют или не найдены
+    </h3>
+    {% else %}
+    {% for good in goods_prices %}
+    <li>    
+        <div>
+            <a href="{% url 'good_prices' good_id=good.good.pk %}" id="{{good.good.pk}}">{{good.good.name}}</a>
+            <ul>
+                {% for price in good.prices %}
+                <li>
+                    Дата: {{price.date}}, Цена: {{price.price}}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </li>
+    {% endfor %}
+    {% endif %}
+</ul>
 {% endblock %}

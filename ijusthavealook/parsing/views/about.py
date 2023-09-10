@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from .index import menu
+from . import menu
 
 
 class AboutView(TemplateView):

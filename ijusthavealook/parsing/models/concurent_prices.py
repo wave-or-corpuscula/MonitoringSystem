@@ -1,10 +1,10 @@
 from django.db import models
 
-from . import Goods
+from . import ConcurentGoods, Observed
 
 
-class Prices(models.Model):
-    good_id = models.ForeignKey(Goods, on_delete=models.DO_NOTHING)
+class ConcurentPrices(models.Model):
+    good_id = models.ForeignKey(ConcurentGoods, on_delete=models.DO_NOTHING)
     price = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
 
