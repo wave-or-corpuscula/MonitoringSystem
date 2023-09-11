@@ -14,7 +14,7 @@ def get_observed():
 
 @register.simple_tag(name='getgoods')
 def get_goods():
-    return Goods.objects.all()
+    return Goods.objects.all().select_related()
 
 @register.simple_tag(name='getgoodbyid')
 def get_good_by_id(good_id: int):

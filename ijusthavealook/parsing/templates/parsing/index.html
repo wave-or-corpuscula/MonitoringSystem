@@ -7,11 +7,11 @@
 	{% getgoods as goods %}
 	{% for g in goods %}
 			<li><div class="article-panel">
-	<p class="first">Категория: {{g.cat}}</p>
+	<p class="first">Категория: {{g.category}}</p>
 	</div>
 				<h2>{{g.name}}</h2>
 			<div class="clear"></div>
-			<p class="link-read-post"><a href="{{ g.name }}">Читать пост</a></p>
+			<p class="link-read-post"><a href="{% url 'good_prices' good_id=g.pk %}">Перейти к товару</a></p>
 			</li>
 	{% endfor %}
 </ul>
